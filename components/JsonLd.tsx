@@ -7,7 +7,7 @@ export default function JsonLd() {
     familyName: "Vidale",
     jobTitle: "Head of Innovation",
     url: "https://vidalelu.ca",
-    image: "https://vidalelu.ca/profile.png",
+    image: "https://vidalelu.ca/profile.jpg",
     email: "mailto:hey@vidalelu.ca",
     address: {
       "@type": "PostalAddress",
