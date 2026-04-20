@@ -63,7 +63,7 @@ export default function About() {
                 />
                 <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border border-ink-700 ring-2 ring-accent/20 bg-ink-800">
                   <Image
-                    src="/profile.jpg"
+                    src="/profile.png"
                     alt="Ritratto di Luca Vidale"
                     fill
                     sizes="(min-width: 640px) 240px, 208px"
