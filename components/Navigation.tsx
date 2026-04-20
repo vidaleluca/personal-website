@@ -41,7 +41,7 @@ export default function Navigation() {
       >
         <nav
           aria-label="Primary"
-          className="section-container flex items-center justify-between h-16 md:h-20"
+          className="section-container flex items-center justify-between h-16 lg:h-20"
         >
           <a href="#top" className="group flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
@@ -50,7 +50,7 @@ export default function Navigation() {
             </span>
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-8">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -63,14 +63,14 @@ export default function Navigation() {
             ))}
           </ul>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <LanguageToggle />
             <a href="#contact" className="btn-primary text-sm py-2 px-4">
               {t.nav.cta}
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
+          <div className="lg:hidden flex items-center gap-3">
             <LanguageToggle />
             <button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -96,7 +96,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 md:hidden bg-ink-950/95 backdrop-blur-2xl pt-24"
+            className="fixed inset-0 z-40 lg:hidden bg-ink-950/95 backdrop-blur-2xl pt-24"
           >
             <ul className="flex flex-col gap-2 section-container">
               {links.map((link, i) => (

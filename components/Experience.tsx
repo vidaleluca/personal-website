@@ -44,9 +44,12 @@ export default function Experience() {
         </div>
 
         <div className="relative">
-          <div className="absolute top-0 bottom-0 left-[11px] md:left-1/2 w-px bg-ink-800 md:-translate-x-px" />
+          <div
+            aria-hidden
+            className="absolute top-0 bottom-0 left-3 md:left-1/2 w-px bg-ink-800 md:-translate-x-px"
+          />
 
-          <ol className="space-y-14 md:space-y-24">
+          <ol className="space-y-16 md:space-y-28">
             {t.experience.items.map((exp, i) => {
               const isEven = i % 2 === 0;
               return (
@@ -56,68 +59,74 @@ export default function Experience() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7 }}
-                  className={`relative grid md:grid-cols-2 gap-5 md:gap-16 ${
-                    isEven ? "" : "md:[&>*:first-child]:col-start-2"
-                  }`}
+                  className="relative"
                 >
                   <span
                     aria-hidden
-                    className="absolute top-[6px] left-[11px] md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent ring-[6px] ring-ink-950 z-10"
+                    className="absolute top-1.5 left-3 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent ring-[6px] ring-ink-950 z-10"
                   />
 
                   <div
-                    className={`pl-10 md:pl-0 ${
-                      isEven ? "md:pr-20 md:text-right" : "md:pl-20"
+                    className={`grid md:grid-cols-2 gap-6 md:gap-24 ${
+                      isEven ? "" : "md:[&>*:first-child]:col-start-2"
                     }`}
                   >
                     <div
-                      className={`flex flex-wrap items-center gap-2.5 mb-3 ${
-                        isEven ? "md:justify-end" : ""
+                      className={`pl-14 md:pl-0 ${
+                        isEven ? "md:pr-12 md:text-right" : "md:pl-12"
                       }`}
                     >
-                      <span className="font-mono text-[11px] md:text-xs text-ink-400 uppercase tracking-widest">
-                        {exp.period}
-                      </span>
-                      {exp.tag && (
-                        <span
-                          className={`font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded ${
-                            tagColors[exp.tag] || "bg-ink-700 text-ink-200"
-                          }`}
-                        >
-                          {tagText[exp.tag as keyof typeof tagText]}
+                      <div
+                        className={`flex flex-wrap items-center gap-2.5 mb-3 ${
+                          isEven ? "md:justify-end" : ""
+                        }`}
+                      >
+                        <span className="font-mono text-[11px] md:text-xs text-ink-400 uppercase tracking-widest">
+                          {exp.period}
                         </span>
-                      )}
+                        {exp.tag && (
+                          <span
+                            className={`font-mono text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded ${
+                              tagColors[exp.tag] || "bg-ink-700 text-ink-200"
+                            }`}
+                          >
+                            {tagText[exp.tag as keyof typeof tagText]}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-balance">
+                        {exp.company}
+                      </h3>
+                      <p className="text-ink-300 text-base md:text-lg">
+                        {exp.role}
+                      </p>
+                      <p className="text-ink-500 text-sm mt-1">
+                        {exp.location}
+                      </p>
                     </div>
-                    <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-1 text-balance">
-                      {exp.company}
-                    </h3>
-                    <p className="text-ink-300 text-base md:text-lg">
-                      {exp.role}
-                    </p>
-                    <p className="text-ink-500 text-sm mt-1">{exp.location}</p>
-                  </div>
 
-                  <div
-                    className={`pl-10 md:pl-0 ${
-                      isEven ? "md:pl-20" : "md:pr-20 md:text-right"
-                    }`}
-                  >
-                    <p className="text-ink-200 leading-relaxed text-base md:text-lg">
-                      {exp.description}
-                    </p>
                     <div
-                      className={`mt-5 flex flex-wrap gap-2 ${
-                        isEven ? "" : "md:justify-end"
+                      className={`pl-14 md:pl-0 ${
+                        isEven ? "md:pl-12" : "md:pr-12 md:text-right"
                       }`}
                     >
-                      {exp.skills.map((s) => (
-                        <span
-                          key={s}
-                          className="text-xs font-mono px-3 py-1 rounded-full border border-ink-700 text-ink-300"
-                        >
-                          {s}
-                        </span>
-                      ))}
+                      <p className="text-ink-200 leading-relaxed text-base md:text-lg">
+                        {exp.description}
+                      </p>
+                      <div
+                        className={`mt-5 flex flex-wrap gap-2 ${
+                          isEven ? "" : "md:justify-end"
+                        }`}
+                      >
+                        {exp.skills.map((s) => (
+                          <span
+                            key={s}
+                            className="text-xs font-mono px-3 py-1 rounded-full border border-ink-700 text-ink-300"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.li>
