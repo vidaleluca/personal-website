@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { LanguageProvider } from "@/components/LanguageProvider";
 import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://vidalelu.ca";
@@ -29,7 +28,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Luca Vidale", url: SITE_URL }],
   creator: "Luca Vidale",
   publisher: "Luca Vidale",
-  generator: "Next.js",
   keywords: [
     "Luca Vidale",
     "Tech Entrepreneur",
@@ -48,8 +46,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      "it-IT": "/?lang=it",
-      "en-US": "/?lang=en",
+      "it-IT": "/it",
+      "en-US": "/en",
       "x-default": "/",
     },
   },
@@ -92,9 +90,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
   },
   category: "technology",
@@ -123,7 +119,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
       </body>
     </html>
   );

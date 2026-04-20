@@ -1,27 +1,32 @@
-import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import Marquee from "@/components/Marquee";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+"use client";
 
-export default function Home() {
+import { useEffect } from "react";
+import { DEFAULT_LOCALE, LOCALES, Locale } from "@/lib/i18n";
+
+const STORAGE_KEY = "vidalelu.ca:locale";
+
+export default function RootPage() {
+  useEffect(() => {
+    let target: Locale = DEFAULT_LOCALE;
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
+      if (stored && LOCALES.includes(stored)) {
+        target = stored;
+      } else {
+        const browser = (navigator.language || "it").slice(0, 2) as Locale;
+        if (LOCALES.includes(browser)) target = browser;
+      }
+    } catch {}
+    window.location.replace(`/${target}`);
+  }, []);
+
   return (
-    <>
-      <Navigation />
-      <main id="main" className="relative">
-        <Hero />
-        <Marquee />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <main className="min-h-[100svh] flex items-center justify-center">
+      <span className="sr-only">Redirecting…</span>
+      <span
+        aria-hidden
+        className="w-3 h-3 rounded-full bg-accent animate-pulse"
+      />
+    </main>
   );
 }

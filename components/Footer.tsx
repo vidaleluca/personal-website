@@ -2,6 +2,7 @@
 
 import { ArrowUp } from "lucide-react";
 import { useT } from "./LanguageProvider";
+import SectionLink from "./SectionLink";
 
 export default function Footer() {
   const { t } = useT();
@@ -27,12 +28,12 @@ export default function Footer() {
           >
             Email
           </a>
-          <a
-            href="#top"
+          <SectionLink
+            section={null}
             className="inline-flex items-center gap-2 hover:text-accent transition-colors"
           >
             {t.footer.backToTop} <ArrowUp size={14} />
-          </a>
+          </SectionLink>
         </div>
       </div>
     </footer>

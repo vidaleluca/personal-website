@@ -5,18 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useT } from "./LanguageProvider";
 import LanguageToggle from "./LanguageToggle";
+import SectionLink from "./SectionLink";
+import { Section } from "@/lib/sections";
 
 export default function Navigation() {
-  const { t } = useT();
+  const { t, locale } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const links = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.education, href: "#education" },
-    { label: t.nav.contact, href: "#contact" },
+  const links: { label: string; section: Section }[] = [
+    { label: t.nav.about, section: "about" },
+    { label: t.nav.skills, section: "skills" },
+    { label: t.nav.experience, section: "experience" },
+    { label: t.nav.education, section: "education" },
+    { label: t.nav.contact, section: "contact" },
   ];
 
   useEffect(() => {
@@ -25,6 +27,15 @@ export default function Navigation() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -43,31 +54,37 @@ export default function Navigation() {
           aria-label="Primary"
           className="section-container flex items-center justify-between h-16 lg:h-20"
         >
-          <a href="#top" className="group flex items-center gap-2">
+          <SectionLink
+            section={null}
+            className="group flex items-center gap-2"
+          >
             <span className="w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
             <span className="font-display font-semibold tracking-tight">
               Luca Vidale
             </span>
-          </a>
+          </SectionLink>
 
           <ul className="hidden lg:flex items-center gap-8">
             {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
+              <li key={link.section}>
+                <SectionLink
+                  section={link.section}
                   className="text-sm text-ink-300 hover:text-accent transition-colors link-underline"
                 >
                   {link.label}
-                </a>
+                </SectionLink>
               </li>
             ))}
           </ul>
 
           <div className="hidden lg:flex items-center gap-4">
             <LanguageToggle />
-            <a href="#contact" className="btn-primary text-sm py-2 px-4">
+            <SectionLink
+              section="contact"
+              className="btn-primary text-sm py-2 px-4"
+            >
               {t.nav.cta}
-            </a>
+            </SectionLink>
           </div>
 
           <div className="lg:hidden flex items-center gap-3">
@@ -96,24 +113,24 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden bg-ink-950/95 backdrop-blur-2xl pt-24"
+            className="fixed inset-0 z-40 lg:hidden bg-ink-950/95 backdrop-blur-2xl pt-24 overflow-y-auto"
           >
-            <ul className="flex flex-col gap-2 section-container">
+            <ul className="flex flex-col gap-2 section-container pb-10">
               {links.map((link, i) => (
                 <motion.li
-                  key={link.href}
+                  key={link.section}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.06 }}
                   className="border-b border-ink-800"
                 >
-                  <a
-                    href={link.href}
+                  <SectionLink
+                    section={link.section}
                     onClick={() => setMenuOpen(false)}
                     className="block py-5 text-2xl sm:text-3xl font-display font-medium tracking-tight hover:text-accent transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </SectionLink>
                 </motion.li>
               ))}
               <motion.li
@@ -122,13 +139,13 @@ export default function Navigation() {
                 transition={{ delay: 0.1 + links.length * 0.06 }}
                 className="pt-8"
               >
-                <a
-                  href="#contact"
+                <SectionLink
+                  section="contact"
                   onClick={() => setMenuOpen(false)}
                   className="btn-primary w-full justify-center"
                 >
                   {t.nav.cta}
-                </a>
+                </SectionLink>
               </motion.li>
             </ul>
           </motion.div>

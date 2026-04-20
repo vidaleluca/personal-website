@@ -10,6 +10,7 @@ import {
 import { ArrowDownRight, MapPin, Sparkles } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useT } from "./LanguageProvider";
+import SectionLink from "./SectionLink";
 
 function SplitWord({
   text,
@@ -184,16 +185,16 @@ export default function Hero() {
 
           <div className="md:col-span-4 md:col-start-9 flex md:justify-end">
             <div className="flex flex-col gap-3 w-full sm:w-auto">
-              <a href="#contact" className="btn-primary group">
+              <SectionLink section="contact" className="btn-primary group">
                 {t.hero.ctaPrimary}
                 <ArrowDownRight
                   size={18}
                   className="transition-transform group-hover:rotate-[-45deg]"
                 />
-              </a>
-              <a href="#experience" className="btn-ghost">
+              </SectionLink>
+              <SectionLink section="experience" className="btn-ghost">
                 {t.hero.ctaSecondary}
-              </a>
+              </SectionLink>
             </div>
           </div>
         </motion.div>
