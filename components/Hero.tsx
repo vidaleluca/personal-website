@@ -228,9 +228,9 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 2 }}
         style={{ opacity: titleOpacity }}
-        className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 md:bottom-8 z-10 flex flex-col items-center gap-2"
+        className="pointer-events-none hidden xl:flex absolute right-8 bottom-8 z-10 flex-col items-center gap-2"
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-400">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-400 [writing-mode:vertical-rl] rotate-180">
           {t.hero.scrollHint}
         </span>
         <motion.span

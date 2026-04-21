@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import Analytics from "@/components/Analytics";
 
 const SITE_URL = "https://vidalelu.ca";
 const SITE_NAME = "Luca Vidale";
@@ -111,6 +112,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <JsonLd />
+        <Analytics />
       </head>
       <body>
         <a
