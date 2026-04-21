@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import Analytics from "@/components/Analytics";
+import { ConsentProvider } from "@/components/ConsentProvider";
 
 const SITE_URL = "https://vidalelu.ca";
 const SITE_NAME = "Luca Vidale";
@@ -112,7 +113,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <JsonLd />
-        <Analytics />
       </head>
       <body>
         <a
@@ -121,7 +121,10 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <ConsentProvider>
+          {children}
+          <Analytics />
+        </ConsentProvider>
       </body>
     </html>
   );

@@ -85,7 +85,15 @@ type Dict = {
     locationValue: string;
     phoneClickToReveal: string;
   };
-  footer: { copyright: string; backToTop: string };
+  footer: { copyright: string; backToTop: string; managePreferences: string };
+  consent: {
+    title: string;
+    body: string;
+    accept: string;
+    reject: string;
+    manage: string;
+    dismiss: string;
+  };
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -257,6 +265,15 @@ export const dict: Record<Locale, Dict> = {
     footer: {
       copyright: "© {year} Luca Vidale. Costruito a Milano.",
       backToTop: "Torna su",
+      managePreferences: "Preferenze cookie",
+    },
+    consent: {
+      title: "Rispettiamo la tua privacy",
+      body: "Uso cookie di analytics (Google Analytics) solo per capire come viene usato il sito. Nessun dato personale venduto, nessun cookie pubblicitario. Sta a te decidere.",
+      accept: "Accetta",
+      reject: "Rifiuta",
+      manage: "Preferenze cookie",
+      dismiss: "Chiudi",
     },
   },
 
@@ -428,6 +445,15 @@ export const dict: Record<Locale, Dict> = {
     footer: {
       copyright: "© {year} Luca Vidale. Built in Milan.",
       backToTop: "Back to top",
+      managePreferences: "Cookie preferences",
+    },
+    consent: {
+      title: "We respect your privacy",
+      body: "This site uses analytics cookies (Google Analytics) only to understand how it's being used. No personal data sold, no ad cookies. Your call.",
+      accept: "Accept",
+      reject: "Reject",
+      manage: "Cookie preferences",
+      dismiss: "Close",
     },
   },
 };

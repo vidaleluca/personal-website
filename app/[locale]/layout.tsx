@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import ConsentBanner from "@/components/ConsentBanner";
 import { LOCALES, Locale } from "@/lib/i18n";
 
 export function generateStaticParams() {
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
   return (
     <LanguageProvider initialLocale={locale as Locale}>
       {children}
+      <ConsentBanner />
     </LanguageProvider>
   );
 }

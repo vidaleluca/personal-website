@@ -1,9 +1,15 @@
+"use client";
+
 import Script from "next/script";
+import { useConsent } from "./ConsentProvider";
 
 const GA_ID = "G-YBWHJNBQGR";
 
 export default function Analytics() {
+  const { consent } = useConsent();
+
   if (process.env.NODE_ENV !== "production") return null;
+  if (!consent?.analytics) return null;
 
   return (
     <>
