@@ -95,7 +95,7 @@ export default function Experience() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className={`grid md:grid-cols-2 gap-6 md:gap-24 ${
+                    className={`grid md:grid-cols-2 md:grid-flow-dense items-start gap-6 md:gap-24 ${
                       isEven ? "" : "md:[&>*:first-child]:col-start-2"
                     }`}
                   >
